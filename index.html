@@ -932,35 +932,37 @@ It supports smooth workflows for individuals and businesses</p>
         }
 
         // Load Theme from localStorage
-        window.onload = () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
+       window.onload = () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
 
-            // Set initial theme toggle icon
-            const themeIcon = document.querySelector('.theme-toggle i');
-            themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    // Set initial theme toggle icon
+    const themeIcon = document.querySelector('.theme-toggle i');
+    themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
 
-            // Typewriter effect
-            // Typewriter effect
-            const typewriterText = "Hi, I'm Haseeb Shoukat ";
-            const typewriterElement = document.querySelector('.typewriter');
-            let i = 0;
+    // Typewriter effect
+    const typewriterText = "Hi, I'm Haseeb Shoukat ";
+    const typewriterElement = document.querySelector('.typewriter');
+    let i = 0;
 
-            function typeWriter() {
-                if (i < typewriterText.length) {
-                    typewriterElement.innerHTML = typewriterText.substring(0, i + 1) + '<span class="cursor">|</span>';
-                    i++;
-                    setTimeout(typeWriter, 100);
-                } else {
-                    // Remove cursor after typing is complete
-                    typewriterElement.innerHTML = typewriterText;
-                    typewriterElement.classList.remove('cursor'); // Remove cursor class
-                }
-            }
+    function typeWriter() {
+        if (i < typewriterText.length) {
+            typewriterElement.innerHTML = typewriterText.substring(0, i + 1) + '<span class="cursor">|</span>';
+            i++;
+            setTimeout(typeWriter, 100);
+        } else {
+            setTimeout(() => {
+                typewriterElement.innerHTML = ''; // Clear the text
+                i = 0; // Reset counter
+                typeWriter(); // Restart
+            }, 1000); // Wait 2 seconds before restarting
+        }
+    }
 
-            // Start typing after a brief delay
-            setTimeout(typeWriter, 500);
-        };
+    // Start typing after a brief delay
+    setTimeout(typeWriter, 500);
+};
+
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
